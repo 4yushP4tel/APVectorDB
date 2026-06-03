@@ -18,7 +18,7 @@ test: build
 	ctest --test-dir $(BUILD_DIR) --output-on-failure
 
 run: build
-	$(BUILD_DIR)/bin/timeseries-db
+	$(BUILD_DIR)/bin/APvectorDB
 
 clean:
 	rm -rf $(BUILD_DIR)

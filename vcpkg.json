@@ -1,7 +1,7 @@
 {
-  "name": "timeseries-db",
+  "name": "apvectordb",
   "version": "0.1.0",
-  "description": "Timeseries database in C++",
+  "description": "Vector database with ANN structures in C++",
   "dependencies": [
     "gtest"
   ]

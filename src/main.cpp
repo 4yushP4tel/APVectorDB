@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Timeseries DB\n";
+    std::cout << "APvectorDB\n";
     return 0;
 }

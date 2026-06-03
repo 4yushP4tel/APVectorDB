@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(timeseries-db LANGUAGES CXX)
+project(APvectorDB LANGUAGES CXX)
 
 include(CTest)
 enable_testing()
@@ -30,24 +30,24 @@ find_package(GTest CONFIG REQUIRED)
 file(GLOB_RECURSE DB_SOURCES CONFIGURE_DEPENDS "src/*.cpp" "src/*.hpp")
 list(REMOVE_ITEM DB_SOURCES "${CMAKE_SOURCE_DIR}/src/main.cpp")
 
-add_library(db-lib STATIC ${DB_SOURCES})
+add_library(APvectorDB-lib STATIC ${DB_SOURCES})
 
-target_include_directories(db-lib PUBLIC include)
+target_include_directories(APvectorDB-lib PUBLIC include)
 
-target_link_libraries(db-lib
+target_link_libraries(APvectorDB-lib
     PUBLIC
         Threads::Threads
 )
 
 # --- Main executable ---
-add_executable(timeseries-db src/main.cpp)
+add_executable(APvectorDB src/main.cpp)
 
-target_link_libraries(timeseries-db
+target_link_libraries(APvectorDB
     PRIVATE
-        db-lib
+        APvectorDB-lib
 )
 
-set_target_properties(timeseries-db PROPERTIES
+set_target_properties(APvectorDB PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
@@ -55,19 +55,19 @@ set_target_properties(timeseries-db PROPERTIES
 file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "tests/*.cpp")
 
 if(TEST_SOURCES)
-    add_executable(timeseries-db-tests ${TEST_SOURCES})
+    add_executable(APvectorDB-tests ${TEST_SOURCES})
 
-    target_link_libraries(timeseries-db-tests
+    target_link_libraries(APvectorDB-tests
         PRIVATE
-            db-lib
+            APvectorDB-lib
             GTest::gtest
             GTest::gtest_main
     )
 
     include(GoogleTest)
-    gtest_discover_tests(timeseries-db-tests)
+    gtest_discover_tests(APvectorDB-tests)
 
-    set_target_properties(timeseries-db-tests PROPERTIES
+    set_target_properties(APvectorDB-tests PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     )
 endif()

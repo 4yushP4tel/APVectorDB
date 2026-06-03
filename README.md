@@ -1,6 +1,6 @@
-# Timeseries Database
+# APvectorDB
 
-A timeseries database built in C++23.
+A vector database with ANN (Approximate Nearest Neighbour) search structures, built in C++23.
 
 ## Prerequisites
 
@@ -32,11 +32,32 @@ make BUILD_TYPE=Debug
 
 ```
 .
-├── src/           # source files (add main.cpp + implementation here)
-├── include/       # public headers
-├── tests/         # GTest test files
+├── src/
+│   ├── main.cpp           # entry point
+│   ├── storage/           # vector storage and persistence
+│   ├── index/             # ANN index implementations
+│   │   ├── hnsw/          # Hierarchical Navigable Small World
+│   │   ├── ivf/           # Inverted File Index
+│   │   └── lsh/           # Locality Sensitive Hashing
+│   ├── distance/          # distance metrics (cosine, euclidean, dot product)
+│   └── query/             # search interface and top-k retrieval
+├── include/
+│   └── vecdb/
+│       ├── index.hpp      # abstract ANN index interface
+│       ├── collection.hpp # top-level collection (analogous to a table)
+│       └── types.hpp      # Vector<T>, Metric enum, result types
+├── bindings/              # pybind11/nanobind wrappers exposing C++ to Python
+│   └── module.cpp
+├── python/
+│   └── apvectordb/        # Python package
+│       ├── __init__.py
+│       └── types.py       # pure-Python helpers and type stubs
+├── tests/                 # GTest unit and integration tests
+│   └── python/            # Python-level tests
+│       └── test_*.py
 ├── CMakeLists.txt
-├── vcpkg.json     # vcpkg dependencies
+├── pyproject.toml         # scikit-build-core config for `pip install .`
+├── vcpkg.json             # vcpkg dependencies
 └── Makefile
 ```
 
