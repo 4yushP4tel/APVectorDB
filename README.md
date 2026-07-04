@@ -28,7 +28,7 @@ To build in debug mode:
 make BUILD_TYPE=Debug
 ```
 
-## Project structure
+## Project Structure
 
 ```
 .
@@ -61,3 +61,8 @@ make BUILD_TYPE=Debug
 └── Makefile
 ```
 
+## Project Goal
+
+APvectorDB is an educational project focused on building a vector database from the ground up in modern C++23. The goal is to gain a deeper understanding of the data structures, indexing algorithms, and systems design principles behind vector databases and Approximate Nearest Neighbour (ANN) search.
+
+The project also serves as an opportunity to strengthen modern C++ development skills, explore software architecture for reusable libraries, and learn how native C++ code can be packaged and exposed to Python through bindings and Python packaging tools.
